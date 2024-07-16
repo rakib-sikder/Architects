@@ -15,18 +15,27 @@
     display: flex;
     
 }
+.buttonem {
+    padding: 1.25rem 1.52rem;
+    border: none;
+    border-radius: 8px;
+    background: rgb(255, 144, 14);
+    color: white;
+}
 
 .bgcolor{
     background: rgba(255, 144, 14, 0.1);
     padding: 1.8rem 0;
+}
+.dsize{
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 /* common css*/
 .navpart{
     justify-content: space-between;
     align-items: center;
-    max-width: 1440px;
-    margin: 0 auto;
     
 }
 .navpart h2{
@@ -44,8 +53,6 @@ font-weight: 700;
 .banner{
     flex-direction: column;
     align-items: center;
-    max-width: 1440px;
-    margin: 0 auto;
     text-align: center;
     word-wrap: break-word;
 }
@@ -64,14 +71,80 @@ font-weight: 700;
 font-weight: 400;
  color: rgb(114, 114, 114);
 }
-.bannertxt > a> button {
-    padding: 1.25rem 1.52rem;
-    border: none;
-    border-radius: 8px;
-background: rgb(255, 144, 14);
-color: white;
+
+.banner > img {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+
+
+
+.feature{
+    margin-top: 3.5rem;
+    justify-content: space-between;
+}
+
+.featureimg{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+}
+.featuretxt{
+    padding: 0 5.5rem;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+}
+.blcclr{
+    color: rgb(19, 19, 19);
+    font-weight: 700;
+}
+.qckclr{
+    color: rgb(114, 114, 114);
+    font-weight: 500;
+}
+.ftrclr{
+    color: rgb(255, 144, 14);
+    font-weight: 700;
+}
+.featuretxt > h3 {
+
+font-size: 2.8rem;
+}
+.featuretxt > p {
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgb(114, 114, 114);
+    margin-top: 1.5rem;
     margin-bottom: 2rem;
 }
-.banner > img {
-    width: 100%;
+
+
+
+
+
+@media only screen and (max-width: 574px){
+    *{
+        margin: 0 auto;
+    }
+    .navpart{
+        display: inline;
+        
+    }
+    .navpart >h2 {
+        margin: 1rem;
+    }
+    .feature{
+        display: inline;
+        justify-content: space-between;
+    }
+    .featureimg{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        margin: 2rem 0;
+        gap: 1.8rem;
+    }
+
+
 }
