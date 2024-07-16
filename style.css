@@ -181,10 +181,51 @@ font-size: 2.8rem;
     flex-direction: column;
     margin: 0 auto;
 }
+
+.facttxt{
+    display: flex;
+    flex-direction: column;
+    padding-right: 50%;
+    
+}
+.facttxt > h3 {
+
+    font-size: 2.81rem;
+font-weight: 700;
+
+margin: 6rem 0 2rem 0;
+}
+.facttxt > p{
+    font-size: 1rem;
+font-weight: 400;
+}
 .fectboxs{
     display: grid;
-    align-items: center;
     grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
+    gap: 6.25rem;
+    margin-top: 5rem;
+    
+}
+.factbox{
+    height: 15rem;
+    width: 15rem;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid goldenrod;
+    border-radius: 8px;
+    
+
+}
+.factbox > h3 {
+    font-size: 2.81rem;
+font-weight: 600;
+}
+.factbox >p {
+    font-size: 1.25rem;
+    color: rgb(114, 114, 114);;
+font-weight: 600;
 }
 @media only screen and (max-width: 574px){
     *{
@@ -209,7 +250,22 @@ font-size: 2.8rem;
     }
     .Experience{
 
-        display: inline;
+        flex-direction: column;
     }
-
+    .experiencetxt {
+        padding: 0px 0;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+    .facttxt{
+        display: flex;
+        flex-direction: column;
+        padding-right: 30%;
+        
+    }
+    .fectboxs{
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
