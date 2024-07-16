@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: Work Sans;
+    
+}
+
+/* common css*/
+.dflex{
+    display: flex;
+    
+}
+
+.bgcolor{
+    background: rgba(255, 144, 14, 0.1);
+    padding: 1.8rem 0;
+}
+
+/* common css*/
+.navpart{
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    
+}
+.navpart h2{
+    font-size: 2.18rem;
+font-weight: 700;
+}
+.navmenu > a{
+    margin-left: 1.8rem;
+    font-weight: 1.12rem;
+    color: rgb(66, 66, 66);
+}
+
+
+
+.banner{
+    flex-direction: column;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    text-align: center;
+    word-wrap: break-word;
+}
+.bannertxt{
+    flex-direction: column;  
+    max-width: 720px;
+}
+
+.bannertxt > h1 {
+    font-size: 4rem;
+font-weight: 700;
+}
+.bannertxt > p {
+    font-size: 1rem;
+    margin: 2rem 0;
+font-weight: 400;
+ color: rgb(114, 114, 114);
+}
+.bannertxt > a> button {
+    padding: 1.25rem 1.52rem;
+    border: none;
+    border-radius: 8px;
+background: rgb(255, 144, 14);
+color: white;
+    margin-bottom: 2rem;
+}
+.banner > img {
+    width: 100%;
+}
