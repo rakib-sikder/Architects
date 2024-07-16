@@ -8,6 +8,7 @@
     list-style: none;
     font-family: Work Sans;
     
+    
 }
 
 /* common css*/
@@ -166,10 +167,23 @@ font-size: 2.8rem;
     font-weight: 400;
 }
 
-.Experience > img {
+.experianceimg > img {
     width: 100%;
 }
-
+.experianceimg > button {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    border: none;
+    margin: -6rem 0 0 -6rem ;
+    background-color: rgb(255, 144, 14);
+}
+.txtsize{
+    font-size: 4rem;
+    font-weight: 700;
+}
 
 
 
@@ -198,6 +212,7 @@ margin: 6rem 0 2rem 0;
 .facttxt > p{
     font-size: 1rem;
 font-weight: 400;
+color: rgb(114, 114, 114);
 }
 .fectboxs{
     display: grid;
@@ -215,8 +230,6 @@ font-weight: 400;
     justify-content: center;
     border: 1px solid goldenrod;
     border-radius: 8px;
-    
-
 }
 .factbox > h3 {
     font-size: 2.81rem;
@@ -227,15 +240,67 @@ font-weight: 600;
     color: rgb(114, 114, 114);;
 font-weight: 600;
 }
+
+
+
+
+
+
+.sponsor{
+    margin-top: 5rem;
+    text-align: center;
+}
+.sponsor > h3 {
+    font-size: 2.8rem;
+font-weight: 700;
+}
+.sponsor > p{
+    font-size: 1rem;
+    margin: 1.5rem 0 3rem 0;
+    font-weight: 400;
+    color: rgb(114, 114, 114);
+
+}
+.sponsorimg{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+.footerpart{
+    margin-top: 50px;
+    border-radius: 8px;
+    text-align: center;
+}
+.footerpart > p {
+    font-size: 1.2rem;
+    color: rgb(66, 66, 66);
+font-weight: 400;
+}
+
 @media only screen and (max-width: 574px){
     *{
         margin: 0 auto;
+        
+    }
+    p{
+        
     }
     .navpart{
         display: inline;
         
     }
     .navpart >h2 {
+        margin: 1rem;
+    }
+    .navpart >a {
         margin: 1rem;
     }
     .feature{
@@ -267,5 +332,28 @@ font-weight: 600;
         display: grid;
         align-items: center;
         grid-template-columns: repeat(1, 1fr);
+    }
+    .experianceimg{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .experianceimg > button {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        border: none;
+        margin: 1rem auto ;
+        background-color: rgb(255, 144, 14);
+    }
+    .sponsorimg{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+        align-items: center;
+        justify-content: center;
     }
 }
