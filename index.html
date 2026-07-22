@@ -7,391 +7,131 @@
     <meta name="description" content="G3 Architects is a design-led architecture studio shaping homes, workplaces and civic spaces — from first blueprint to finished landmark." />
     <meta name="theme-color" content="#23486B" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='6' fill='%2323486B'/%3E%3Cg stroke='%23EEEAE3' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M9 23V13l7-4 7 4v10'/%3E%3Cpath d='M9 18h14M9 23h14'/%3E%3C/g%3E%3C/svg%3E" />
-
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              concrete: "#EEEAE3",
-              paper: "#F6F4EF",
-              ink: "#14161B",
-              blueprint: "#23486B",
-              "blueprint-800": "#1A3350",
-              steel: "#6B7178",
-              rust: "#C0592C",
-              line: "#DBD6CB",
-            },
-            fontFamily: {
-              display: ['"Archivo"', "system-ui", "sans-serif"],
-              sans: ['"Inter"', "system-ui", "sans-serif"],
-              mono: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
-            },
-            maxWidth: { shell: "84rem" },
-            keyframes: {
-              marquee: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
-            },
-            animation: { marquee: "marquee 30s linear infinite" },
-          },
-        },
-      };
-    </script>
+    <script src="./assets/tw.js"></script>
     <script src="https://kit.fontawesome.com/caf2e2e181.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-    <style>
-      html { scroll-behavior: smooth; }
-      body { font-family: "Inter", system-ui, sans-serif; background: #EEEAE3; color: #14161B; -webkit-font-smoothing: antialiased; }
-      h1, h2, h3, .font-display { font-family: "Archivo", system-ui, sans-serif; }
-      .font-mono { font-family: "IBM Plex Mono", monospace; }
-      ::selection { background: #23486B; color: #EEEAE3; }
-      :focus-visible { outline: 2px solid #23486B; outline-offset: 3px; }
-      .anno { font-family: "IBM Plex Mono", monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; }
-      .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
-      .reveal.in { opacity: 1; transform: none; }
-      .reveal[data-d="1"] { transition-delay: .08s; } .reveal[data-d="2"] { transition-delay: .16s; } .reveal[data-d="3"] { transition-delay: .24s; }
-      .marquee-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-      .nav-link::after { content:""; position:absolute; left:0; right:100%; bottom:-4px; height:2px; background:#23486B; transition:right .3s ease; }
-      .nav-link:hover::after, .nav-link.active::after { right:0; }
-      dialog#pm { border:none; border-radius:20px; padding:0; max-width:44rem; width:calc(100% - 2rem); background:#F6F4EF; }
-      dialog#pm::backdrop { background: rgba(20,22,27,.6); }
-      @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto;} .reveal{opacity:1!important;transform:none!important;transition:none!important;} .animate-marquee{animation:none!important;} }
-    </style>
+    <link rel="stylesheet" href="./assets/app.css" />
   </head>
 
-  <body class="bg-concrete text-ink">
-    <a href="#home" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:m-3 focus:rounded focus:bg-blueprint focus:px-4 focus:py-2 focus:text-concrete">Skip to content</a>
+  <body class="bg-concrete text-ink" data-page="home" data-hero="dark">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:m-3 focus:rounded focus:bg-blueprint focus:px-4 focus:py-2 focus:text-concrete">Skip to content</a>
+    <div data-site-header></div>
 
-    <!-- HEADER -->
-    <header id="hd" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
-      <div class="mx-auto flex max-w-shell items-center justify-between px-5 sm:px-8 h-[72px]">
-        <a href="#home" class="flex items-center gap-2.5" aria-label="G3 Architects home">
-          <svg viewBox="0 0 32 32" class="h-9 w-9"><rect x="2" y="2" width="28" height="28" rx="6" fill="#23486B"/><g stroke="#EEEAE3" stroke-width="2" stroke-linecap="round"><path d="M9 23V13l7-4 7 4v10"/><path d="M9 18h14M9 23h14"/></g></svg>
-          <span class="text-lg font-extrabold uppercase tracking-tight font-display">G3 <span class="text-blueprint">Architects</span></span>
-        </a>
-        <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
-          <a href="#studio" class="nav-link relative text-ink/70 hover:text-ink" data-nav>Studio</a>
-          <a href="#services" class="nav-link relative text-ink/70 hover:text-ink" data-nav>Services</a>
-          <a href="#projects" class="nav-link relative text-ink/70 hover:text-ink" data-nav>Projects</a>
-          <a href="#team" class="nav-link relative text-ink/70 hover:text-ink" data-nav>Team</a>
-          <a href="#contact" class="nav-link relative text-ink/70 hover:text-ink" data-nav>Contact</a>
-        </nav>
-        <div class="flex items-center gap-2">
-          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-blueprint px-5 py-2.5 text-sm font-semibold text-concrete hover:bg-blueprint-800">Start a project <i class="fa-solid fa-arrow-right -rotate-45 text-[11px]"></i></a>
-          <button id="mb" class="lg:hidden grid h-10 w-10 place-items-center rounded-full border border-ink/15" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
-        </div>
-      </div>
-      <div id="mm" class="hidden lg:hidden border-t border-line bg-paper">
-        <nav class="mx-auto flex max-w-shell flex-col px-5 py-3 sm:px-8">
-          <a href="#studio" class="rounded px-3 py-3 font-medium text-ink/80 hover:bg-concrete" data-mnav>Studio</a>
-          <a href="#services" class="rounded px-3 py-3 font-medium text-ink/80 hover:bg-concrete" data-mnav>Services</a>
-          <a href="#projects" class="rounded px-3 py-3 font-medium text-ink/80 hover:bg-concrete" data-mnav>Projects</a>
-          <a href="#team" class="rounded px-3 py-3 font-medium text-ink/80 hover:bg-concrete" data-mnav>Team</a>
-          <a href="#contact" class="rounded px-3 py-3 font-medium text-ink/80 hover:bg-concrete" data-mnav>Contact</a>
-          <a href="#contact" class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-blueprint px-5 py-3 font-semibold text-concrete" data-mnav>Start a project <i class="fa-solid fa-arrow-right -rotate-45 text-[11px]"></i></a>
-        </nav>
-      </div>
-    </header>
-
-    <!-- HERO -->
-    <section id="home" class="relative min-h-[92vh] pt-[72px]">
-      <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2000&q=80" alt="A landmark building by G3 Architects" class="absolute inset-0 h-full w-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/20"></div>
-      <div class="relative mx-auto flex min-h-[calc(92vh-72px)] max-w-shell flex-col justify-center px-5 py-16 sm:px-8">
-        <div class="reveal max-w-3xl">
-          <p class="anno flex items-center gap-3 text-concrete/70"><span class="h-px w-8 bg-rust"></span> Architecture · Interiors · Urban Design</p>
-          <h1 class="mt-5 text-[2.7rem] font-extrabold uppercase leading-[0.95] tracking-tight text-concrete sm:text-6xl xl:text-7xl">
-            We build the spaces<br />cities <span class="text-rust">remember.</span>
-          </h1>
-          <p class="mt-6 max-w-xl text-lg leading-relaxed text-concrete/80">
-            G3 Architects is a design-led studio turning bold ideas into buildings that last — from the
-            first blueprint to the day the doors open.
-          </p>
-          <div class="mt-8 flex flex-wrap items-center gap-3">
-            <a href="#projects" class="inline-flex items-center gap-2 rounded-full bg-rust px-6 py-3.5 text-sm font-semibold text-white hover:opacity-90">See our projects <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
-            <a href="#contact" class="inline-flex items-center gap-2 rounded-full border border-concrete/40 px-6 py-3.5 text-sm font-semibold text-concrete hover:bg-concrete hover:text-ink">Book a consult</a>
-          </div>
-        </div>
-        <div class="reveal mt-14 grid max-w-2xl grid-cols-3 gap-6 border-t border-concrete/20 pt-6" data-d="1">
-          <div><p class="font-display text-3xl font-extrabold text-concrete">10<span class="text-rust">+</span></p><p class="anno mt-1 text-concrete/60">Years building</p></div>
-          <div><p class="font-display text-3xl font-extrabold text-concrete">1458</p><p class="anno mt-1 text-concrete/60">Projects finished</p></div>
-          <div><p class="font-display text-3xl font-extrabold text-concrete">54</p><p class="anno mt-1 text-concrete/60">Awards won</p></div>
-        </div>
-      </div>
-      <p class="anno absolute bottom-6 right-6 hidden text-concrete/50 lg:block">N 23.8103° · E 90.4125° — Dhaka</p>
-    </section>
-
-    <!-- CLIENTS MARQUEE -->
-    <section class="border-y border-line bg-paper py-5">
-      <div class="marquee-mask overflow-hidden">
-        <div class="flex w-max animate-marquee items-center gap-12 opacity-70">
-          <span class="anno text-steel">Trusted by</span>
-          <img src="./images/sponsors/amazon.png" class="h-6" alt="Amazon" />
-          <img src="./images/sponsors/google.png" class="h-6" alt="Google" />
-          <img src="./images/sponsors/figma.png" class="h-6" alt="Figma" />
-          <img src="./images/sponsors/spotify.png" class="h-6" alt="Spotify" />
-          <img src="./images/sponsors/telerama.png" class="h-6" alt="Telerama" />
-          <span class="anno text-steel">Trusted by</span>
-          <img src="./images/sponsors/amazon.png" class="h-6" alt="Amazon" />
-          <img src="./images/sponsors/google.png" class="h-6" alt="Google" />
-          <img src="./images/sponsors/figma.png" class="h-6" alt="Figma" />
-          <img src="./images/sponsors/spotify.png" class="h-6" alt="Spotify" />
-          <img src="./images/sponsors/telerama.png" class="h-6" alt="Telerama" />
-        </div>
-      </div>
-    </section>
-
-    <!-- STUDIO / ABOUT -->
-    <section id="studio" class="scroll-mt-24 py-20 sm:py-28">
-      <div class="mx-auto grid max-w-shell items-center gap-12 px-5 sm:px-8 lg:grid-cols-2">
-        <div class="reveal relative">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="Inside a G3 Architects building" class="h-[440px] w-full rounded-2xl object-cover" />
-          <div class="absolute -bottom-5 -right-4 hidden rounded-2xl bg-blueprint px-6 py-5 text-concrete shadow-xl sm:block">
-            <p class="font-display text-4xl font-extrabold leading-none">10<span class="text-rust">+</span></p>
-            <p class="anno mt-1 text-concrete/70">Years of practice</p>
-          </div>
-        </div>
-        <div class="reveal" data-d="1">
-          <p class="anno flex items-center gap-3 text-blueprint"><span class="h-px w-8 bg-blueprint"></span> The studio</p>
-          <h2 class="mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">A brand-new group of architects</h2>
-          <p class="mt-5 text-lg leading-relaxed text-steel">
-            We're a Dhaka-based practice of architects, interior designers and urban thinkers who believe
-            good buildings start with good questions. We design for how people actually live, move and
-            gather — then we sweat every detail until it's built.
-          </p>
-          <div class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2">
-            <div class="border-t border-line pt-4"><h3 class="font-display text-lg font-bold">Desktop &amp; mobile-ready</h3><p class="mt-1 text-sm text-steel">Plans, 3D walkthroughs and documents you can review anywhere.</p></div>
-            <div class="border-t border-line pt-4"><h3 class="font-display text-lg font-bold">Modern, timeless design</h3><p class="mt-1 text-sm text-steel">Contemporary form with materials chosen to age with grace.</p></div>
-            <div class="border-t border-line pt-4"><h3 class="font-display text-lg font-bold">Built to spec</h3><p class="mt-1 text-sm text-steel">We supervise on site so the design intent survives construction.</p></div>
-            <div class="border-t border-line pt-4"><h3 class="font-display text-lg font-bold">Easy to work with</h3><p class="mt-1 text-sm text-steel">One point of contact, clear milestones, honest budgets.</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" class="scroll-mt-24 bg-ink py-20 text-concrete sm:py-28">
-      <div class="mx-auto max-w-shell px-5 sm:px-8">
-        <div class="reveal flex flex-wrap items-end justify-between gap-6">
-          <div class="max-w-xl">
-            <p class="anno flex items-center gap-3 text-rust"><span class="h-px w-8 bg-rust"></span> What we do</p>
-            <h2 class="mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">Services, blueprint to build</h2>
-          </div>
-          <p class="max-w-sm text-concrete/60">A full-service studio — you brief us once, and we carry it all the way to handover.</p>
-        </div>
-        <div class="mt-14 grid gap-px overflow-hidden rounded-2xl border border-concrete/10 bg-concrete/10 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="reveal bg-ink p-8 transition-colors hover:bg-blueprint-800"><span class="anno text-rust">01</span><i class="fa-solid fa-drafting-compass mt-4 block text-2xl text-concrete"></i><h3 class="mt-4 font-display text-xl font-bold">Architecture</h3><p class="mt-2 text-sm text-concrete/60">Residential, commercial and civic buildings, designed and documented to build.</p></div>
-          <div class="reveal bg-ink p-8 transition-colors hover:bg-blueprint-800" data-d="1"><span class="anno text-rust">02</span><i class="fa-solid fa-couch mt-4 block text-2xl text-concrete"></i><h3 class="mt-4 font-display text-xl font-bold">Interior Design</h3><p class="mt-2 text-sm text-concrete/60">Interiors that carry the architecture through to the last fixture and finish.</p></div>
-          <div class="reveal bg-ink p-8 transition-colors hover:bg-blueprint-800" data-d="2"><span class="anno text-rust">03</span><i class="fa-solid fa-city mt-4 block text-2xl text-concrete"></i><h3 class="mt-4 font-display text-xl font-bold">Urban Design</h3><p class="mt-2 text-sm text-concrete/60">Masterplans and public realm that make neighbourhoods work better.</p></div>
-          <div class="reveal bg-ink p-8 transition-colors hover:bg-blueprint-800"><span class="anno text-rust">04</span><i class="fa-solid fa-tree mt-4 block text-2xl text-concrete"></i><h3 class="mt-4 font-display text-xl font-bold">Landscape</h3><p class="mt-2 text-sm text-concrete/60">Gardens, courtyards and terraces that connect buildings to the outdoors.</p></div>
-          <div class="reveal bg-ink p-8 transition-colors hover:bg-blueprint-800" data-d="1"><span class="anno text-rust">05</span><i class="fa-solid fa-vr-cardboard mt-4 block text-2xl text-concrete"></i><h3 class="mt-4 font-display text-xl font-bold">3D &amp; BIM</h3><p class="mt-2 text-sm text-concrete/60">Photoreal visuals and coordinated BIM models before a brick is laid.</p></div>
-          <div class="reveal bg-ink p-8 transition-colors hover:bg-blueprint-800" data-d="2"><span class="anno text-rust">06</span><i class="fa-solid fa-helmet-safety mt-4 block text-2xl text-concrete"></i><h3 class="mt-4 font-display text-xl font-bold">Consulting</h3><p class="mt-2 text-sm text-concrete/60">Feasibility, approvals and construction oversight, start to finish.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="scroll-mt-24 py-20 sm:py-28">
-      <div class="mx-auto max-w-shell px-5 sm:px-8">
-        <div class="reveal flex flex-wrap items-end justify-between gap-6">
-          <div class="max-w-xl">
-            <p class="anno flex items-center gap-3 text-blueprint"><span class="h-px w-8 bg-blueprint"></span> Selected work</p>
-            <h2 class="mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">Projects</h2>
-          </div>
-          <div id="pf" class="flex flex-wrap gap-2">
-            <button class="fb is-active rounded-full border border-blueprint bg-blueprint px-4 py-2 text-sm font-medium text-concrete" data-filter="all">All</button>
-            <button class="fb rounded-full border border-line px-4 py-2 text-sm font-medium text-ink/70 hover:border-blueprint/50" data-filter="Residential">Residential</button>
-            <button class="fb rounded-full border border-line px-4 py-2 text-sm font-medium text-ink/70 hover:border-blueprint/50" data-filter="Commercial">Commercial</button>
-            <button class="fb rounded-full border border-line px-4 py-2 text-sm font-medium text-ink/70 hover:border-blueprint/50" data-filter="Civic">Civic</button>
-          </div>
-        </div>
-        <div id="pg" class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <article class="pj reveal sm:col-span-2 lg:row-span-2" data-cat="Commercial" data-title="Skyline HQ Tower" data-tag="Commercial · Gulshan" data-img="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1400&q=80" data-desc="A 22-storey headquarters wrapped in a high-performance glass facade, with sky gardens on every third floor and a public plaza at its base.">
-            <div class="group relative h-full overflow-hidden rounded-2xl">
-              <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1400&q=80" alt="Skyline HQ Tower" class="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105 lg:h-full" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></div>
-              <div class="absolute inset-x-0 bottom-0 flex items-end justify-between p-6"><div><p class="anno text-concrete/70">Commercial · Gulshan</p><h3 class="mt-1 font-display text-2xl font-bold text-concrete">Skyline HQ Tower</h3></div><span class="grid h-11 w-11 place-items-center rounded-full bg-rust text-white transition-transform group-hover:rotate-45"><i class="fa-solid fa-arrow-right -rotate-45"></i></span></div>
-            </div>
-          </article>
-          <article class="pj reveal" data-cat="Residential" data-title="Concrete Courtyard House" data-tag="Residential · Dhanmondi" data-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" data-desc="A private family home organised around a shaded courtyard, using board-formed concrete, warm timber and deep overhangs for the local climate." data-d="1">
-            <div class="group relative overflow-hidden rounded-2xl">
-              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Concrete Courtyard House" class="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></div>
-              <div class="absolute inset-x-0 bottom-0 flex items-end justify-between p-6"><div><p class="anno text-concrete/70">Residential · Dhanmondi</p><h3 class="mt-1 font-display text-xl font-bold text-concrete">Concrete Courtyard House</h3></div><span class="grid h-11 w-11 place-items-center rounded-full bg-rust text-white transition-transform group-hover:rotate-45"><i class="fa-solid fa-arrow-right -rotate-45"></i></span></div>
-            </div>
-          </article>
-          <article class="pj reveal" data-cat="Civic" data-title="Riverside Cultural Centre" data-tag="Civic · Sadarghat" data-img="https://images.unsplash.com/photo-1470723710355-95304d8aece4?auto=format&fit=crop&w=1200&q=80" data-desc="A cultural centre and library with a sweeping public stair, naturally ventilated galleries and a rooftop that opens to the river." data-d="2">
-            <div class="group relative overflow-hidden rounded-2xl">
-              <img src="https://images.unsplash.com/photo-1470723710355-95304d8aece4?auto=format&fit=crop&w=1200&q=80" alt="Riverside Cultural Centre" class="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></div>
-              <div class="absolute inset-x-0 bottom-0 flex items-end justify-between p-6"><div><p class="anno text-concrete/70">Civic · Sadarghat</p><h3 class="mt-1 font-display text-xl font-bold text-concrete">Riverside Cultural Centre</h3></div><span class="grid h-11 w-11 place-items-center rounded-full bg-rust text-white transition-transform group-hover:rotate-45"><i class="fa-solid fa-arrow-right -rotate-45"></i></span></div>
-            </div>
-          </article>
-          <article class="pj reveal" data-cat="Commercial" data-title="Glass Atrium Offices" data-tag="Commercial · Banani" data-img="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80" data-desc="A mid-rise workplace built around a full-height planted atrium that brings daylight and greenery deep into every floorplate.">
-            <div class="group relative overflow-hidden rounded-2xl">
-              <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80" alt="Glass Atrium Offices" class="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></div>
-              <div class="absolute inset-x-0 bottom-0 flex items-end justify-between p-6"><div><p class="anno text-concrete/70">Commercial · Banani</p><h3 class="mt-1 font-display text-xl font-bold text-concrete">Glass Atrium Offices</h3></div><span class="grid h-11 w-11 place-items-center rounded-full bg-rust text-white transition-transform group-hover:rotate-45"><i class="fa-solid fa-arrow-right -rotate-45"></i></span></div>
-            </div>
-          </article>
-          <article class="pj reveal sm:col-span-2" data-cat="Residential" data-title="Terraced Hillside Villas" data-tag="Residential · Sylhet" data-img="https://images.unsplash.com/photo-1460574283810-2aab119d8511?auto=format&fit=crop&w=1400&q=80" data-desc="A set of stepped villas that follow the slope, each with a private terrace framing the valley view and shared landscaped paths between." data-d="1">
-            <div class="group relative overflow-hidden rounded-2xl">
-              <img src="https://images.unsplash.com/photo-1460574283810-2aab119d8511?auto=format&fit=crop&w=1400&q=80" alt="Terraced Hillside Villas" class="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></div>
-              <div class="absolute inset-x-0 bottom-0 flex items-end justify-between p-6"><div><p class="anno text-concrete/70">Residential · Sylhet</p><h3 class="mt-1 font-display text-2xl font-bold text-concrete">Terraced Hillside Villas</h3></div><span class="grid h-11 w-11 place-items-center rounded-full bg-rust text-white transition-transform group-hover:rotate-45"><i class="fa-solid fa-arrow-right -rotate-45"></i></span></div>
-            </div>
-          </article>
-        </div>
-        <p id="pe" class="hidden py-12 text-center text-steel">No projects in this category yet.</p>
-      </div>
-    </section>
-
-    <!-- FACTS (count-up) -->
-    <section class="bg-blueprint py-16 text-concrete sm:py-20">
-      <div class="mx-auto max-w-shell px-5 sm:px-8">
-        <div class="reveal mb-10 max-w-xl"><h2 class="text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">Some facts</h2><p class="mt-2 text-concrete/60">A decade of practice, by the numbers.</p></div>
-        <div class="grid grid-cols-2 gap-8 lg:grid-cols-4">
-          <div class="reveal border-t border-concrete/20 pt-5"><p class="font-display text-5xl font-extrabold" data-count="54">0</p><p class="anno mt-2 text-concrete/60">Awards winning</p></div>
-          <div class="reveal border-t border-concrete/20 pt-5" data-d="1"><p class="font-display text-5xl font-extrabold" data-count="22578">0</p><p class="anno mt-2 text-concrete/60">Emails sent</p></div>
-          <div class="reveal border-t border-concrete/20 pt-5" data-d="2"><p class="font-display text-5xl font-extrabold" data-count="590">0</p><p class="anno mt-2 text-concrete/60">Clients worked</p></div>
-          <div class="reveal border-t border-concrete/20 pt-5" data-d="3"><p class="font-display text-5xl font-extrabold" data-count="1458">0</p><p class="anno mt-2 text-concrete/60">Projects finished</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TEAM -->
-    <section id="team" class="scroll-mt-24 py-20 sm:py-28">
-      <div class="mx-auto max-w-shell px-5 sm:px-8">
-        <div class="reveal mx-auto max-w-2xl text-center">
-          <p class="anno flex items-center justify-center gap-3 text-blueprint"><span class="h-px w-8 bg-blueprint"></span> The people</p>
-          <h2 class="mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">Our team</h2>
-        </div>
-        <div class="mt-14 grid grid-cols-2 gap-6 lg:grid-cols-4">
-          <div class="reveal group"><div class="relative overflow-hidden rounded-2xl"><img src="./images/team1.png" alt="Principal Architect" class="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105" /><div class="absolute inset-x-0 bottom-0 flex justify-center gap-3 bg-gradient-to-t from-ink/80 to-transparent p-4 opacity-0 transition-opacity group-hover:opacity-100"><a href="#" onclick="return false" class="text-concrete/80 hover:text-rust"><i class="fa-brands fa-linkedin text-lg"></i></a><a href="#" onclick="return false" class="text-concrete/80 hover:text-rust"><i class="fa-brands fa-behance text-lg"></i></a></div></div><h3 class="mt-4 font-display text-lg font-bold">Gulraiz Ahmed</h3><p class="text-sm text-steel">Principal Architect</p></div>
-          <div class="reveal group" data-d="1"><div class="relative overflow-hidden rounded-2xl"><img src="./images/team2.png" alt="Design Director" class="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105" /><div class="absolute inset-x-0 bottom-0 flex justify-center gap-3 bg-gradient-to-t from-ink/80 to-transparent p-4 opacity-0 transition-opacity group-hover:opacity-100"><a href="#" onclick="return false" class="text-concrete/80 hover:text-rust"><i class="fa-brands fa-linkedin text-lg"></i></a><a href="#" onclick="return false" class="text-concrete/80 hover:text-rust"><i class="fa-brands fa-behance text-lg"></i></a></div></div><h3 class="mt-4 font-display text-lg font-bold">Sadia Noor</h3><p class="text-sm text-steel">Design Director</p></div>
-          <div class="reveal group" data-d="2"><div class="relative overflow-hidden rounded-2xl"><img src="./images/team3.png" alt="Project Lead" class="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105" /><div class="absolute inset-x-0 bottom-0 flex justify-center gap-3 bg-gradient-to-t from-ink/80 to-transparent p-4 opacity-0 transition-opacity group-hover:opacity-100"><a href="#" onclick="return false" class="text-concrete/80 hover:text-rust"><i class="fa-brands fa-linkedin text-lg"></i></a><a href="#" onclick="return false" class="text-concrete/80 hover:text-rust"><i class="fa-brands fa-behance text-lg"></i></a></div></div><h3 class="mt-4 font-display text-lg font-bold">Rezaul Karim</h3><p class="text-sm text-steel">Project Lead</p></div>
-          <div class="reveal group" data-d="3"><div class="relative overflow-hidden rounded-2xl"><img src="./images/team4.png" alt="Interior Lead" class="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105" /><div class="absolute inset-x-0 bottom-0 flex justify-center gap-3 bg-gradient-to-t from-ink/80 to-transparent p-4 opacity-0 transition-opacity group-hover:opacity-100"><a href="#" onclick="return false" class="text-concrete/80 hover:text-rust"><i class="fa-brands fa-linkedin text-lg"></i></a><a href="#" onclick="return false" class="text-concrete/80 hover:text-rust"><i class="fa-brands fa-behance text-lg"></i></a></div></div><h3 class="mt-4 font-display text-lg font-bold">Farah Deeba</h3><p class="text-sm text-steel">Interior Lead</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="scroll-mt-24 bg-ink py-20 text-concrete sm:py-28">
-      <div class="mx-auto grid max-w-shell gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <div class="reveal">
-          <p class="anno flex items-center gap-3 text-rust"><span class="h-px w-8 bg-rust"></span> Let's build</p>
-          <h2 class="mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">Start a project with us</h2>
-          <p class="mt-4 max-w-md text-concrete/60">Tell us about your site and ambitions. We'll set up a consult and sketch a way forward.</p>
-          <div class="mt-10 space-y-5">
-            <div class="flex items-start gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-concrete/10 text-rust"><i class="fa-solid fa-location-dot"></i></span><div><p class="font-semibold">Studio</p><p class="text-concrete/60">House 3, Road 27, Gulshan, Dhaka 1212</p></div></div>
-            <div class="flex items-start gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-concrete/10 text-rust"><i class="fa-solid fa-envelope"></i></span><div><p class="font-semibold">Email</p><p class="text-concrete/60">studio@g3architects.com</p></div></div>
-            <div class="flex items-start gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-concrete/10 text-rust"><i class="fa-solid fa-phone"></i></span><div><p class="font-semibold">Phone</p><p class="text-concrete/60">+880 1700-000000</p></div></div>
-          </div>
-        </div>
-        <form id="cf" class="reveal rounded-3xl border border-concrete/15 bg-concrete/5 p-6 sm:p-8" novalidate data-d="1">
-          <div class="grid gap-4 sm:grid-cols-2">
-            <input name="name" required placeholder="Your name*" class="w-full rounded-xl border border-concrete/20 bg-concrete/5 px-4 py-3 text-concrete placeholder:text-concrete/40 focus:border-rust focus:outline-none" />
-            <input type="email" name="email" required placeholder="Email*" class="w-full rounded-xl border border-concrete/20 bg-concrete/5 px-4 py-3 text-concrete placeholder:text-concrete/40 focus:border-rust focus:outline-none" />
-          </div>
-          <input name="subject" placeholder="Project location / type" class="mt-4 w-full rounded-xl border border-concrete/20 bg-concrete/5 px-4 py-3 text-concrete placeholder:text-concrete/40 focus:border-rust focus:outline-none" />
-          <textarea name="message" required rows="5" placeholder="Tell us about your project…" class="mt-4 w-full rounded-xl border border-concrete/20 bg-concrete/5 px-4 py-3 text-concrete placeholder:text-concrete/40 focus:border-rust focus:outline-none"></textarea>
-          <p id="cs" class="mt-4 hidden text-center font-medium" role="status"></p>
-          <button class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-rust px-6 py-3.5 font-semibold text-white hover:opacity-90" type="submit">Send enquiry <i class="fa-solid fa-arrow-right -rotate-45"></i></button>
-        </form>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-blueprint-800 text-concrete">
-      <div class="mx-auto max-w-shell px-5 py-14 sm:px-8">
-        <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
-          <div class="max-w-xs">
-            <a href="#home" class="flex items-center gap-2.5"><svg viewBox="0 0 32 32" class="h-9 w-9"><rect x="2" y="2" width="28" height="28" rx="6" fill="#23486B"/><g stroke="#EEEAE3" stroke-width="2" stroke-linecap="round"><path d="M9 23V13l7-4 7 4v10"/><path d="M9 18h14M9 23h14"/></g></svg><span class="text-lg font-extrabold uppercase tracking-tight font-display">G3 Architects</span></a>
-            <p class="mt-4 text-sm leading-relaxed text-concrete/50">Architecture, interiors and urban design — from the first blueprint to the finished landmark.</p>
-            <div class="mt-5 flex gap-3">
-              <a href="#" onclick="return false" aria-label="Instagram" class="grid h-9 w-9 place-items-center rounded-full border border-concrete/20 text-concrete/70 hover:border-rust hover:text-rust"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#" onclick="return false" aria-label="LinkedIn" class="grid h-9 w-9 place-items-center rounded-full border border-concrete/20 text-concrete/70 hover:border-rust hover:text-rust"><i class="fa-brands fa-linkedin"></i></a>
-              <a href="#" onclick="return false" aria-label="Behance" class="grid h-9 w-9 place-items-center rounded-full border border-concrete/20 text-concrete/70 hover:border-rust hover:text-rust"><i class="fa-brands fa-behance"></i></a>
+    <main id="main">
+      <!-- 3D HERO -->
+      <section id="home" class="hero-blueprint-grid relative min-h-[92vh] overflow-hidden bg-ink pt-[72px]">
+        <img id="hero-fallback" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2000&q=80" alt="" class="absolute inset-0 z-0 h-full w-full object-cover" />
+        <div id="hero3d" aria-hidden="true"></div>
+        <div class="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-r from-ink via-ink/80 to-ink/20"></div>
+        <div class="relative z-10 mx-auto flex min-h-[calc(92vh-72px)] max-w-shell flex-col justify-center px-5 py-16 sm:px-8">
+          <div class="reveal max-w-3xl">
+            <p class="anno flex items-center gap-3 text-concrete/70"><span class="h-px w-8 bg-rust"></span> Architecture · Interiors · Urban Design</p>
+            <h1 class="mt-5 text-[2.7rem] font-extrabold uppercase leading-[0.95] tracking-tight text-concrete sm:text-6xl xl:text-7xl">We build the spaces<br />cities <span class="text-rust">remember.</span></h1>
+            <p class="mt-6 max-w-xl text-lg leading-relaxed text-concrete/80">A design-led studio turning bold ideas into buildings that last — explore our live 3D massing model, then dive into the work.</p>
+            <div class="mt-8 flex flex-wrap items-center gap-3">
+              <a href="projects.html" class="inline-flex items-center gap-2 rounded-full bg-rust px-6 py-3.5 text-sm font-semibold text-white hover:opacity-90">See our projects <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
+              <a href="contact.html" class="inline-flex items-center gap-2 rounded-full border border-concrete/40 px-6 py-3.5 text-sm font-semibold text-concrete hover:bg-concrete hover:text-ink">Book a consult</a>
             </div>
           </div>
-          <div><h3 class="anno mb-4 text-concrete/40">Explore</h3><ul class="space-y-2.5 text-sm text-concrete/70"><li><a href="#studio" class="hover:text-concrete">Studio</a></li><li><a href="#services" class="hover:text-concrete">Services</a></li><li><a href="#projects" class="hover:text-concrete">Projects</a></li><li><a href="#team" class="hover:text-concrete">Team</a></li></ul></div>
-          <div><h3 class="anno mb-4 text-concrete/40">Studio</h3><p class="text-sm text-concrete/60">House 3, Road 27<br />Gulshan, Dhaka 1212</p><p class="mt-3 text-sm text-concrete/60">studio@g3architects.com<br />+880 1700-000000</p></div>
+          <div class="reveal mt-14 grid max-w-2xl grid-cols-3 gap-6 border-t border-concrete/20 pt-6" data-d="1">
+            <div><p class="font-display text-3xl font-extrabold text-concrete">10<span class="text-rust">+</span></p><p class="anno mt-1 text-concrete/60">Years building</p></div>
+            <div><p class="font-display text-3xl font-extrabold text-concrete">1458</p><p class="anno mt-1 text-concrete/60">Projects finished</p></div>
+            <div><p class="font-display text-3xl font-extrabold text-concrete">54</p><p class="anno mt-1 text-concrete/60">Awards won</p></div>
+          </div>
         </div>
-        <div class="mt-12 flex flex-col items-center justify-between gap-3 border-t border-concrete/10 pt-6 text-sm text-concrete/40 sm:flex-row">
-          <p>© <span id="yr"></span> G3 Architects. A portfolio demo.</p>
-          <p class="anno">Est. 2013 · Dhaka, Bangladesh</p>
+        <p class="anno absolute bottom-6 right-6 z-10 hidden text-concrete/40 lg:block"><i class="fa-solid fa-arrows-up-down-left-right mr-1"></i> Interactive massing model · move to explore</p>
+      </section>
+
+      <!-- CLIENTS MARQUEE -->
+      <section class="border-y border-line bg-paper py-5">
+        <div class="marquee-mask overflow-hidden">
+          <div class="flex w-max animate-marquee items-center gap-12 opacity-70">
+            <span class="anno text-steel">Trusted by</span>
+            <img src="./images/sponsors/amazon.png" class="h-6" alt="Amazon" /><img src="./images/sponsors/google.png" class="h-6" alt="Google" /><img src="./images/sponsors/figma.png" class="h-6" alt="Figma" /><img src="./images/sponsors/spotify.png" class="h-6" alt="Spotify" /><img src="./images/sponsors/telerama.png" class="h-6" alt="Telerama" />
+            <span class="anno text-steel">Trusted by</span>
+            <img src="./images/sponsors/amazon.png" class="h-6" alt="Amazon" /><img src="./images/sponsors/google.png" class="h-6" alt="Google" /><img src="./images/sponsors/figma.png" class="h-6" alt="Figma" /><img src="./images/sponsors/spotify.png" class="h-6" alt="Spotify" /><img src="./images/sponsors/telerama.png" class="h-6" alt="Telerama" />
+          </div>
         </div>
-      </div>
-    </footer>
+      </section>
 
-    <button id="tt" class="fixed bottom-6 right-6 z-40 grid h-11 w-11 translate-y-4 place-items-center rounded-full bg-blueprint text-concrete opacity-0 shadow-lg transition-all hover:bg-blueprint-800" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+      <!-- INTRO -->
+      <section class="py-20 sm:py-28">
+        <div class="mx-auto grid max-w-shell items-center gap-12 px-5 sm:px-8 lg:grid-cols-2">
+          <div class="reveal relative">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="Inside a G3 Architects building" class="h-[440px] w-full rounded-2xl object-cover" />
+            <div class="absolute -bottom-5 -right-4 hidden rounded-2xl bg-blueprint px-6 py-5 text-concrete shadow-xl sm:block"><p class="font-display text-4xl font-extrabold leading-none">10<span class="text-rust">+</span></p><p class="anno mt-1 text-concrete/70">Years of practice</p></div>
+          </div>
+          <div class="reveal" data-d="1">
+            <p class="anno flex items-center gap-3 text-blueprint"><span class="h-px w-8 bg-blueprint"></span> The studio</p>
+            <h2 class="mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">A brand-new group of architects</h2>
+            <p class="mt-5 text-lg leading-relaxed text-steel">We're a Dhaka-based practice of architects, interior designers and urban thinkers who design for how people actually live — then sweat every detail until it's built.</p>
+            <a href="studio.html" class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-concrete hover:bg-blueprint">More about the studio <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
+          </div>
+        </div>
+      </section>
 
-    <dialog id="pm">
-      <div class="relative">
-        <button type="button" id="pmc" class="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full bg-ink/60 text-concrete hover:bg-ink" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-        <img id="pmi" src="" alt="" class="h-64 w-full rounded-t-[20px] object-cover" />
-        <div class="p-7"><p id="pmt" class="anno text-rust"></p><h3 id="pmh" class="mt-1 font-display text-2xl font-bold"></h3><p id="pmd" class="mt-3 leading-relaxed text-steel"></p><a href="#contact" id="pmcta" class="mt-6 inline-flex items-center gap-2 rounded-full bg-blueprint px-5 py-3 text-sm font-semibold text-concrete">Enquire about this <i class="fa-solid fa-arrow-right -rotate-45 text-xs"></i></a></div>
-      </div>
-    </dialog>
+      <!-- SERVICES TEASER -->
+      <section class="bg-ink py-20 text-concrete sm:py-28">
+        <div class="mx-auto max-w-shell px-5 sm:px-8">
+          <div class="reveal flex flex-wrap items-end justify-between gap-6">
+            <div class="max-w-xl"><p class="anno flex items-center gap-3 text-rust"><span class="h-px w-8 bg-rust"></span> What we do</p><h2 class="mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">Blueprint to build</h2></div>
+            <a href="services.html" class="inline-flex items-center gap-2 text-sm font-semibold text-concrete hover:text-rust">All services <i class="fa-solid fa-arrow-right -rotate-45 text-xs"></i></a>
+          </div>
+          <div class="mt-14 grid gap-px overflow-hidden rounded-2xl border border-concrete/10 bg-concrete/10 sm:grid-cols-3">
+            <a href="services.html" class="reveal bg-ink p-8 transition-colors hover:bg-blueprint-800"><span class="anno text-rust">01</span><i class="fa-solid fa-drafting-compass mt-4 block text-2xl"></i><h3 class="mt-4 font-display text-xl font-bold">Architecture</h3><p class="mt-2 text-sm text-concrete/60">Residential, commercial and civic buildings, documented to build.</p></a>
+            <a href="services.html" class="reveal bg-ink p-8 transition-colors hover:bg-blueprint-800" data-d="1"><span class="anno text-rust">02</span><i class="fa-solid fa-couch mt-4 block text-2xl"></i><h3 class="mt-4 font-display text-xl font-bold">Interior Design</h3><p class="mt-2 text-sm text-concrete/60">Interiors carried through to the last fixture and finish.</p></a>
+            <a href="services.html" class="reveal bg-ink p-8 transition-colors hover:bg-blueprint-800" data-d="2"><span class="anno text-rust">03</span><i class="fa-solid fa-city mt-4 block text-2xl"></i><h3 class="mt-4 font-display text-xl font-bold">Urban Design</h3><p class="mt-2 text-sm text-concrete/60">Masterplans and public realm that make places work.</p></a>
+          </div>
+        </div>
+      </section>
 
-    <script>
-      (function () {
-        var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-        document.getElementById("yr").textContent = new Date().getFullYear();
-        var hd = document.getElementById("hd");
-        function onScroll(){ var s = scrollY>20; hd.classList.toggle("bg-paper/90",s); hd.classList.toggle("backdrop-blur-md",s); hd.classList.toggle("shadow-sm",s); hd.classList.toggle("border-b",s); hd.classList.toggle("border-line",s); var tt=document.getElementById("tt"); tt.classList.toggle("opacity-0",scrollY<400); tt.classList.toggle("translate-y-4",scrollY<400); }
-        addEventListener("scroll", onScroll, {passive:true}); onScroll();
-        var mb=document.getElementById("mb"), mm=document.getElementById("mm");
-        mb.addEventListener("click", function(){ var open=mm.classList.toggle("hidden")===false; mb.setAttribute("aria-expanded",open); mb.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>'; });
-        document.querySelectorAll("[data-mnav]").forEach(function(a){ a.addEventListener("click", function(){ mm.classList.add("hidden"); mb.innerHTML='<i class="fa-solid fa-bars"></i>'; }); });
-        // Reveal is driven by Motion One (module below). This is the safety net:
-        // if that ESM module fails to load, show everything after a short delay.
-        if(reduce){ document.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in");}); }
-        else { window.__mo=false; setTimeout(function(){ if(!window.__mo){ document.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in");}); } },1800); }
-        var nav=document.querySelectorAll("[data-nav]");
-        var secs=["studio","services","projects","team","contact"].map(function(id){return document.getElementById(id);}).filter(Boolean);
-        if("IntersectionObserver"in window){ var so=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ nav.forEach(function(l){ l.classList.toggle("active", l.getAttribute("href")==="#"+e.target.id); }); } }); },{rootMargin:"-45% 0px -50% 0px"}); secs.forEach(function(s){so.observe(s);}); }
-        var counters=document.querySelectorAll("[data-count]");
-        function run(el){ var t=+el.dataset.count,d=1500,t0=null; if(reduce){el.textContent=t.toLocaleString();return;} function s(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/d,1),e=1-Math.pow(1-p,3); el.textContent=Math.round(e*t).toLocaleString(); if(p<1)requestAnimationFrame(s);} requestAnimationFrame(s); }
-        if("IntersectionObserver"in window){ var co=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ run(e.target); co.unobserve(e.target);} }); },{threshold:0.6}); counters.forEach(function(c){co.observe(c);}); } else counters.forEach(run);
-        var fbs=document.querySelectorAll(".fb"), pjs=document.querySelectorAll(".pj"), pe=document.getElementById("pe");
-        fbs.forEach(function(b){ b.addEventListener("click", function(){ fbs.forEach(function(x){ x.classList.remove("is-active","bg-blueprint","text-concrete","border-blueprint"); x.classList.add("border-line","text-ink/70"); }); b.classList.add("is-active","bg-blueprint","text-concrete","border-blueprint"); b.classList.remove("border-line","text-ink/70"); var f=b.dataset.filter,v=0; pjs.forEach(function(p){ var show=f==="all"||p.dataset.cat===f; p.classList.toggle("hidden",!show); if(show)v++; }); pe.classList.toggle("hidden",v>0); }); });
-        var pm=document.getElementById("pm");
-        document.querySelectorAll(".pj").forEach(function(el){ el.addEventListener("click", function(){ var d=el.dataset; document.getElementById("pmi").src=d.img; document.getElementById("pmi").alt=d.title; document.getElementById("pmt").textContent=d.tag; document.getElementById("pmh").textContent=d.title; document.getElementById("pmd").textContent=d.desc; if(pm.showModal)pm.showModal(); }); });
-        document.getElementById("pmc").addEventListener("click",function(){pm.close();});
-        document.getElementById("pmcta").addEventListener("click",function(){pm.close();});
-        pm.addEventListener("click",function(e){ if(e.target===pm)pm.close(); });
-        var cf=document.getElementById("cf"), cs=document.getElementById("cs");
-        cf.addEventListener("submit", function(e){ e.preventDefault(); if(!cf.checkValidity()){ cf.reportValidity(); cs.textContent="Please fill in every required field."; cs.className="mt-4 text-center font-medium text-rust"; return; } cs.textContent="Thank you — your enquiry is on its way. We'll reply within one business day."; cs.className="mt-4 text-center font-medium text-concrete"; cf.reset(); });
-        document.getElementById("tt").addEventListener("click", function(){ scrollTo({top:0,behavior:reduce?"auto":"smooth"}); });
-      })();
-    </script>
+      <!-- FEATURED PROJECTS -->
+      <section class="py-20 sm:py-28">
+        <div class="mx-auto max-w-shell px-5 sm:px-8">
+          <div class="reveal flex flex-wrap items-end justify-between gap-6">
+            <div class="max-w-xl"><p class="anno flex items-center gap-3 text-blueprint"><span class="h-px w-8 bg-blueprint"></span> Selected work</p><h2 class="mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">Featured projects</h2></div>
+            <a href="projects.html" class="inline-flex items-center gap-2 text-sm font-semibold text-blueprint hover:underline">All projects <i class="fa-solid fa-arrow-right -rotate-45 text-xs"></i></a>
+          </div>
+          <div class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <a href="project-skyline-hq-tower.html" class="reveal group relative overflow-hidden rounded-2xl sm:col-span-2"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1400&q=80" alt="Skyline HQ Tower" class="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-96" /><div class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></div><div class="absolute inset-x-0 bottom-0 flex items-end justify-between p-6"><div><p class="anno text-concrete/70">Commercial · Gulshan</p><h3 class="mt-1 font-display text-2xl font-bold text-concrete">Skyline HQ Tower</h3></div><span class="grid h-11 w-11 place-items-center rounded-full bg-rust text-white transition-transform group-hover:rotate-45"><i class="fa-solid fa-arrow-right -rotate-45"></i></span></div></a>
+            <a href="project-concrete-courtyard-house.html" class="reveal group relative overflow-hidden rounded-2xl" data-d="1"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Concrete Courtyard House" class="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-96" /><div class="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent"></div><div class="absolute inset-x-0 bottom-0 flex items-end justify-between p-6"><div><p class="anno text-concrete/70">Residential · Dhanmondi</p><h3 class="mt-1 font-display text-xl font-bold text-concrete">Concrete Courtyard House</h3></div><span class="grid h-11 w-11 place-items-center rounded-full bg-rust text-white transition-transform group-hover:rotate-45"><i class="fa-solid fa-arrow-right -rotate-45"></i></span></div></a>
+          </div>
+        </div>
+      </section>
 
-    <!-- Motion (the Framer Motion team's vanilla-JS animation engine) drives the
-         scroll reveals with spring-like easing and per-item stagger. -->
-    <script type="module">
-      import { animate, inView } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm";
-      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        window.__mo = true;
-        // Reveal each element as it enters the viewport (hero fires on load),
-        // with a spring-like ease and per-item stagger read from data-d.
-        inView(
-          ".reveal",
-          function (info) {
-            var el = info && info.target ? info.target : info;
-            var d = (+((el.dataset && el.dataset.d) || 0)) * 0.09;
-            animate(
-              el,
-              { opacity: [0, 1], transform: ["translateY(30px)", "translateY(0px)"] },
-              { duration: 0.7, delay: d, easing: [0.16, 1, 0.3, 1] }
-            );
-          },
-          { amount: 0.15 }
-        );
-      }
-    </script>
+      <!-- FACTS -->
+      <section class="bg-blueprint py-16 text-concrete sm:py-20">
+        <div class="mx-auto max-w-shell px-5 sm:px-8">
+          <div class="reveal mb-10 max-w-xl"><h2 class="text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">Some facts</h2><p class="mt-2 text-concrete/60">A decade of practice, by the numbers.</p></div>
+          <div class="grid grid-cols-2 gap-8 lg:grid-cols-4">
+            <div class="reveal border-t border-concrete/20 pt-5"><p class="font-display text-5xl font-extrabold" data-count="54">0</p><p class="anno mt-2 text-concrete/60">Awards winning</p></div>
+            <div class="reveal border-t border-concrete/20 pt-5" data-d="1"><p class="font-display text-5xl font-extrabold" data-count="22578">0</p><p class="anno mt-2 text-concrete/60">Emails sent</p></div>
+            <div class="reveal border-t border-concrete/20 pt-5" data-d="2"><p class="font-display text-5xl font-extrabold" data-count="590">0</p><p class="anno mt-2 text-concrete/60">Clients worked</p></div>
+            <div class="reveal border-t border-concrete/20 pt-5" data-d="3"><p class="font-display text-5xl font-extrabold" data-count="1458">0</p><p class="anno mt-2 text-concrete/60">Projects finished</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="py-20 sm:py-28">
+        <div class="mx-auto max-w-shell px-5 sm:px-8">
+          <div class="reveal relative overflow-hidden rounded-3xl bg-ink px-6 py-16 text-center text-concrete sm:px-12">
+            <div class="hero-blueprint-grid pointer-events-none absolute inset-0 opacity-40"></div>
+            <div class="relative mx-auto max-w-2xl">
+              <h2 class="text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">Have a site and an idea?</h2>
+              <p class="mx-auto mt-4 max-w-lg text-concrete/70">Bring us the plot, the brief, or just the ambition. We'll sketch a way forward.</p>
+              <a href="contact.html" class="mt-8 inline-flex items-center gap-2 rounded-full bg-rust px-7 py-3.5 font-semibold text-white hover:opacity-90">Start a project <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+    <script src="./assets/app.js"></script>
+    <script type="module" src="./assets/hero3d.js"></script>
   </body>
 </html>
